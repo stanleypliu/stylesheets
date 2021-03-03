@@ -24,6 +24,23 @@
   }
 }
 
+@mixin portrait() {
+  @media screen and (orientation:portrait) {
+    @content;
+  } 
+}
+
+@mixin responsive($property, $breakpoint-1, $breakpoint-2, $breakpoint-3, $laptop: false) {
+  #{$property}: $breakpoint-1;
+
+  @include breakpoint($sm) { #{$property}: $breakpoint-2; }
+  @include breakpoint($md) { #{$property}: $breakpoint-3; }
+
+  @if $laptop {
+    @include breakpoint($lg) { #{$property}: $laptop; }
+  }
+}
+
 //-------------------------------------------------
 // Spacer
 //-------------------------------------------------
